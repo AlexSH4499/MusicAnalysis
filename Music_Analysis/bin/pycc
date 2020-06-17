@@ -1,0 +1,3 @@
+#!/home/ghoul/Documents/GitHub/MusicAnalysis/Music_Analysis/bin/python3
+from numba.pycc import main
+main()

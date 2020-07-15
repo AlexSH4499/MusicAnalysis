@@ -20,3 +20,6 @@
 # References
 
 > Be sure to always include important sources here!
+
+## Librosa Tutorials
+- https://www.youtube.com/watch?v=MhOdbtPhbLU

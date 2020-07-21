@@ -1,6 +1,18 @@
 # Beat tracking example
+from flask import Flask, jsonify, request
+from flask_cors import CORS
+
+from Music_DB.handler.musichandler import MusicHandler
+
 from __future__ import print_function
 import librosa
+
+# file accessor tests
+app = Flask(__name__)
+CORS(app)
+
+filen = r"C:\git\MusicAnalysis\Music_Analysis\"
+filen.append(MusicHandler().getMusicbyId(1))
 
 # 1. Get the file path to the included audio example
 filename = r"C:\git\MusicAnalysis\Music_Analysis\Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"

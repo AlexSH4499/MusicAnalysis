@@ -9,13 +9,19 @@ class MusicHandler:
         result['mid'] = row[0]
         result['filename'] = row[1]
         result['labels'] = row[2]
+        result['chordtype'] = row[2]
+        result['timestampbefore'] = row[2]
+        result['timestampafter'] = row[2]
         return result
     
-    def build_music_attributes(self, mid, filename, labels):
+    def build_music_attributes(self, mid, filename, labels, chordtype, timestampbefore, timestampafter):
         result = {}
         result['mid'] = mid
         result['filename'] = filename
         result['labels'] = labels
+        result['chordtype'] = chordtype
+        result['timestampbefore'] = timestampbefore
+        result['timestampafter'] = timestampafter
         return result
     
     def getAllMusic(self):
@@ -35,10 +41,22 @@ class MusicHandler:
         return jsonify(Music=Music)
 
     def searchMusic(self, args):
+        dao = MusicDAO
         filename = args.get('filename')
         labels = args.get('labels')
+        chordtype = args.get('chordtype')
+        timestampbefore = args.get('timestampbefore')
+        timestampafter = args.get('timestampafter')
         music_list = []
-        if (len(args) == 2) and filename and labels:
+        if (len(args) == 5) and filename and labels and chordtype and timestampbefore and timestampafter:
+            music_list = dao.getMusicByFilenameandLabelsandChordtypeandTimestampbeforeandtimestampafter(filename, labels, chordtype, timestampbefore, timestampafter)
+        elif (len(args == 4)) and filename and labels and chordtype and timestampbefore:
+            music_list = dao.getMusicByFilenameandLabelsandChordtypeandTimestampbefore(filename, labels, chordtype, timestampbefore)
+        elif (len(args == 4)) and filename and labels and chordtype and timestampafter:
+            music_list = dao.getMusicByFilenameandLabelsandChordtypeandTimestampafter(filename, labels, chordtype, timestampafter)
+        elif (len(args == 4)) and filename and chordtype and timestampbefore and timestampafter:
+            music_list = dao.getMusicByFilenameandChordtypeandTimestampbeforeandTimestampafter(filename, chordtype, timestampbefore, timestampafter)
+        elif (len(args) == 2) and filename and labels:
             music_list = dao.getMusicByFilenameandLabels(filename, labels)
         elif (len(args) == 1) and filename:
             music_list = dao.getMusicByFilename(filename)
@@ -55,9 +73,12 @@ class MusicHandler:
     def insertMusicJson(self, json):
         filename = json['filename']
         labels = json['labels']
-        if filename and labels:
-            mid = dao.insert(filename, labels)
-            result = self.build_music_attributes(mid, filename, labels)
+        chordtype = json['chordtype']
+        timestampbefore = json['timestampbefore']
+        timestampafter = json['timestampafter']
+        if filename and labels and chordtype and timestampbefore and timestampafter:
+            mid = dao.insert(filename, labels, chordtype, timestampbefore, timestampafter)
+            result = self.build_music_attributes(mid, filename, labels, chordtype, timestampbefore, timestampafter)
             return jsonify(Music=result), 201
         else:
             return jsonify(Error="Unexpected attributes in post request"), 400
@@ -71,9 +92,12 @@ class MusicHandler:
             else:
                 filename = form['filename']
                 labels = form['labels']
-                if filename and labels:
-                    dao.update(mid, filename, labels)
-                    result = self.build_music_attributes(mid, filename, labels)
+                chordtype = form['chordtype']
+                timestampbefore = form['timestampbefore']
+                timestampafter = form['timestampafter']
+                if filename and labels and chordtype and timestampbefore and timestampafter:
+                    dao.update(mid, filename, labels, chordtype, timestampbefore, timestampafter)
+                    result = self.build_music_attributes(mid, filename, labels, chordtype, timestampbefore, timestampafter)
                     return jsonify(Music=result), 200
                 else:
                     return jsonify(Error="Unexpected attributes in update request"), 400

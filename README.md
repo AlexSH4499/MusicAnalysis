@@ -29,3 +29,7 @@
 - https://hackernoon.com/audio-handling-basics-how-to-process-audio-files-using-python-cli-jo283u3y
 - https://arxiv.org/pdf/1905.00078.pdf
 - https://www.kdnuggets.com/2020/02/audio-data-analysis-deep-learning-python-part-1.html
+
+## KNOWN ISSUE (Ale only System)
+- Must run music_analyzer in sudo without virtualenv due to permission problems
+  > ghoul@Tokyo:~/Documents/GitHub/MusicAnalysis/Music_Analysis$ sudo python3 music_parser.py

@@ -8,32 +8,39 @@ from platform import system
 
 from pathlib import Path
 
-
+'''This module must call setup() before accessing a valid ROOT_DIR'''
 
 ROOT_DIR = None
 
-current_platform =None
+CURRENT_PLATFORM =system()
 
-try:
-    current_platform = system()
+# try:
+#     current_platform = system()
 
-    if current_platform.lower() =='windows':
-        pass
+#     if current_platform.lower() =='windows':
+#         pass
 
-    if current_platform.lower() =="linux"
-        pass
-    else:
-        raise ValueError(f"Sorry your platform [{current_platform}] is not currently supported!\n")
+#     if current_platform.lower() =="linux":
+#         pass
+#     else:
+#         raise ValueError(f"Sorry your platform [{current_platform}] is not currently supported!\n")
 
-except Exception as e:
-    print(e)
-    sys.exit(-1)
-    pass
+# except Exception as e:
+#     print(e)
+#     sys.exit(-1)
+#     pass
 
 def get_project_root()->Path:
-    return Path(__file__).parent.parent
+    # return Path(__file__).parent.parent
+    setup()
+    return ROOT_DIR
 
-def find(name, path):
+def find(name,path):
+    for root, dirs, files in os.walk(path):
+        if name in files:
+            return os.path.join(root, name)
+
+def find_all(name, path):
     for root, dirs,files in os.walk(path):
         if name in files:
             yield os.path.join(root , name)
@@ -66,3 +73,6 @@ def setup():
     global ROOT_DIR
     ROOT_DIR = os.path.dirname(os.path.abspath(filename))
     return ROOT_DIR
+
+if __name__ =="__main__":
+    setup()

@@ -6,11 +6,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import warnings
 
+from utils.settings import get_project_root, find
+
 filename = r"C:\Users\johnm\git\MusicAnalysis\Music_Analysis\Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"
 
-nix_filename = r"/home/ghoul/Documents/GitHub/MusicAnalysis/Music_Analysis/Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"
+nix_filename = r"Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"
 
-def load_music(filename, dir):
+def load_music(filename, dir=get_project_root()):
+
+    filename= find(path=dir, name=filename)
+
     y, sample_rate = librosa.load(filename)
 
     D = librosa.stft(y)
@@ -19,10 +24,10 @@ def load_music(filename, dir):
 
     return y, sample_rate,D , log_pow
 
-def show_music(data=load_music(nix_filename,dir='')):
+def show_music(data=load_music(nix_filename)):
 
     plt.figure()
-    librosa.display.specshow(log_pow,x_axis='time', y_axis='log')
+    librosa.display.specshow(data[3],x_axis='time', y_axis='log')
     plt.colorbar()
     plt.show()
 
@@ -34,26 +39,26 @@ warnings.filterwarnings("ignore",category=UserWarning)
 
 # 1. Get the file path to the included audio example
 
-filename = r"C:\Users\johnm\git\MusicAnalysis\Music_Analysis\Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"
+# filename = r"C:\Users\johnm\git\MusicAnalysis\Music_Analysis\Megaman_ZX_-_Green_Grass_Gradiation_NITRO_Remix (1).wav"
 
 # 2. Load the audio as a waveform `y`
 #    Store the sampling rate as `sr`
-y, sr = librosa.load(filename)
+# y, sr = librosa.load(filename)
 
-D = librosa.stft(y)
+# D = librosa.stft(y)
 
-log_pow = librosa.amplitude_to_db(np.abs(D**2), ref=np.max)
+# log_pow = librosa.amplitude_to_db(np.abs(D**2), ref=np.max)
 
-plt.figure()
-librosa.display.specshow(log_pow, x_axis = 'time', y_axis = 'log')
-plt.colorbar()
-
-
+# plt.figure()
+# librosa.display.specshow(log_pow, x_axis = 'time', y_axis = 'log')
+# plt.colorbar()
 
 
 
 
-plt.show()
+
+
+# plt.show()
 
 # 3. Run the default beat tracker
 # tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)

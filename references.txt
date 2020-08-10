@@ -29,3 +29,6 @@ PyAudio:
 FileFormat specifications (AAC, WAV):
 -- https://wiki.fileformat.com/audio/aac/
 -- https://wiki.fileformat.com/audio/wav/
+
+Fix for platform dependent issues on FS:
+-- https://stackoverflow.com/questions/25389095/python-get-path-of-root-project-structure

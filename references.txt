@@ -29,3 +29,9 @@ PyAudio:
 FileFormat specifications (AAC, WAV):
 -- https://wiki.fileformat.com/audio/aac/
 -- https://wiki.fileformat.com/audio/wav/
+
+Fix for platform dependent issues on FS:
+-- https://stackoverflow.com/questions/25389095/python-get-path-of-root-project-structure
+
+RWC Music Database: Musical Instrument Sound
+-- https://staff.aist.go.jp/m.goto/RWC-MDB/rwc-mdb-i.html

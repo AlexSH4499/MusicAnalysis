@@ -1,0 +1,15 @@
+tone, modifier
+A,
+A,m
+B,
+B,m
+C,
+C,m
+D,
+D,m
+E,
+E,mo
+F,
+F,m
+G,
+G,m

@@ -37,8 +37,8 @@ class ChordFamilyBuilder:
         for chord, mod in chords:
             yield self.chord_factory.new_chord(chord, mod)
     
-    def read_chords_from(self, filename):
-        root_dir = settings.setup()
+    def read_chords_from(self, filename,root_dir = settings.setup()):
+        
         file_path = settings.find(name=filename, path=root_dir)
         with open(file_path,'r') as cords:
             chords_reader = csv.reader(cords)

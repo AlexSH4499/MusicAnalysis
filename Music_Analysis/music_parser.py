@@ -35,6 +35,13 @@ def show_music(data=load_music(nix_filename)):
 
     return
 
+def plot_music(data, x_axis='time', y_axis='log'):
+    plt.figure()
+    librosa.display.specshow(data, x_axis=x_axis, y_axis=y_axis)
+    plt.colorbar()
+
+    return
+
 warnings.filterwarnings("ignore",category=UserWarning)
 
 # TODO: this needs to be abstracted away so we can avoid conflicts between both our systems

@@ -1,6 +1,12 @@
 Music Auto-Tagging Using CNNs and Mel-Spectrograms with reduced f's and Time resolution:
 -- https://arxiv.org/pdf/1911.04824v2.pdf
 
+Detecting Musical Key with Supervised Learning
+-- http://cs229.stanford.edu/proj2016/report/Mahieu-DetectingMusicalKeyWithSupervisedLearning-report.pdf
+
+Musical key estimation of audio signal based on hidden Markov modeling of chroma vectors
+-- http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.422.4590
+
 Modeling the Degree of Realized Expectation in Functional Tonal Music:
 -- https://pdfs.semanticscholar.org/7c9c/6ae89ce27a0b25cbebbee8790f68488db911.pdf
 

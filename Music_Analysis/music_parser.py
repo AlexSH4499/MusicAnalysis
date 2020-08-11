@@ -28,18 +28,19 @@ def show_music(data=load_music(nix_filename)):
 
     log_pow_data = data[3]
 
-    plt.figure()
-    librosa.display.specshow(log_pow_data,x_axis='time', y_axis='log')
-    plt.colorbar()
-    plt.show()
+    # plt.figure()
+    # librosa.display.specshow(log_pow_data,x_axis='time', y_axis='log')
+    # plt.colorbar()
+    # plt.show()
 
+    plot_music(data=log_pow_data)
     return
 
 def plot_music(data, x_axis='time', y_axis='log'):
     plt.figure()
     librosa.display.specshow(data, x_axis=x_axis, y_axis=y_axis)
     plt.colorbar()
-
+    plt.show()
     return
 
 warnings.filterwarnings("ignore",category=UserWarning)

@@ -26,8 +26,10 @@ def load_music(filename, dir=get_project_root()):
 
 def show_music(data=load_music(nix_filename)):
 
+    log_pow_data = data[3]
+
     plt.figure()
-    librosa.display.specshow(data[3],x_axis='time', y_axis='log')
+    librosa.display.specshow(log_pow_data,x_axis='time', y_axis='log')
     plt.colorbar()
     plt.show()
 

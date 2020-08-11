@@ -24,7 +24,7 @@ def load_music(filename, dir=get_project_root()):
 
     return y, sample_rate,D , log_pow
 
-def show_music(data=load_music(nix_filename)):
+def show_music_log_pow(data=load_music(nix_filename)):
 
     log_pow_data = data[3]
 
@@ -35,6 +35,11 @@ def show_music(data=load_music(nix_filename)):
 
     plot_music(data=log_pow_data)
     return
+
+def extract_frequency_data(music_data=load_music(filename=nix_filename)):
+    '''This only works when calling load_music function where data[2] is sample_rate'''
+    sample_rate = music_data[2]
+    return librosa.fft_frequencies(sample_rate)
 
 def plot_music(data, x_axis='time', y_axis='log'):
     plt.figure()
@@ -59,15 +64,15 @@ warnings.filterwarnings("ignore",category=UserWarning)
 
 # log_pow = librosa.amplitude_to_db(np.abs(D**2), ref=np.max)
 
-E = librosa.fft_frequencies(sr)
+# E = librosa.fft_frequencies(sr)
 
-plt.figure()
-librosa.display.specshow(E, x_axis = 'time', y_axis = 'log')
-plt.colorbar()
+# plt.figure()
+# librosa.display.specshow(E, x_axis = 'time', y_axis = 'log')
+# plt.colorbar()
 
-plt.figure()
-librosa.display.specshow(log_pow, x_axis = 'time', y_axis = 'log')
-plt.colorbar()
+# plt.figure()
+# librosa.display.specshow(log_pow, x_axis = 'time', y_axis = 'log')
+# plt.colorbar()
 
 
 
@@ -90,5 +95,5 @@ plt.colorbar()
 
 
 if __name__ == "__main__":
-    print(f"Running  Sample file:{filename}")
+    # print(f"Running  Sample file:{nix_filename}")
     show_music()

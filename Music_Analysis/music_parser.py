@@ -44,6 +44,12 @@ D = librosa.stft(y)
 
 log_pow = librosa.amplitude_to_db(np.abs(D**2), ref=np.max)
 
+E = librosa.fft_frequencies(sr)
+
+plt.figure()
+librosa.display.specshow(E, x_axis = 'time', y_axis = 'log')
+plt.colorbar()
+
 plt.figure()
 librosa.display.specshow(log_pow, x_axis = 'time', y_axis = 'log')
 plt.colorbar()
@@ -69,5 +75,5 @@ plt.show()
 
 
 if __name__ == "__main__":
-    print(f"Running  Sample file:{nix_filename}")
+    print(f"Running  Sample file:{filename}")
     show_music()

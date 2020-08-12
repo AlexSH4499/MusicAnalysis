@@ -46,22 +46,15 @@ class MusicKeyFactory:
 
         key = MusicKey(pitch=pitch, mode=mode)
 
-        try:
-            self.is_valid_key(key)
-        except Exception as e:
-            print(e)
+        if not self.is_valid_key(key):    
             key = None
-        finally:
-            pass
 
         return key
     
     def is_valid_key(self, key:MusicKey)->bool:
 
         if (not key.is_valid_mode(key.mode()) ) or (not key.is_valid_pitch(key.pitch())):
-
-            raise ValueError("Sorry invalid MusicalKey provided")
-
+            return False
         else:
             return True
     

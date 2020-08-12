@@ -65,7 +65,7 @@ class MusicKeyFactory:
         else:
             return True
     
-    def create_all_keys(self, keys:Iterable[str], modes:Iterable[str]):
+    def create_all_keys(self, pitches:Iterable[str]=PITCHES, modes:Iterable[str]=MODES):
 
         keys=[]
         for mode in modes:
